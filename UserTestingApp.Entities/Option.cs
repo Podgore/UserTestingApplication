@@ -2,10 +2,10 @@
 
 namespace UserTestingApp.Entities;
 
-public class Option
+public class Option : EntityBase
 {
-    string Label { get; set; } = string.Empty;
-    bool isCorrect { get; set; }
+    public string Label { get; set; } = string.Empty;
+    public bool isCorrect { get; set; }
 
     [ForeignKey(nameof(Task))]
     public Guid TaskId { get; set; }

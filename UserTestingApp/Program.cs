@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using UserTestingApp.DAL.EF;
 
 namespace UserTestingApp
 {
@@ -9,7 +11,12 @@ namespace UserTestingApp
 
             // Add services to the container.
 
+            // DbContext
+            builder.Services.AddDbContext<ApplicationDbContext>(opt =>
+                opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
             builder.Services.AddControllers();
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

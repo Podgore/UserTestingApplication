@@ -25,4 +25,9 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\UserTestingApp.BLL\UserTestingApp.BLL.csproj" />
+    <ProjectReference Include="..\UserTestingApp.DAL\UserTestingApp.DAL.csproj" />
+  </ItemGroup>
+
 </Project>

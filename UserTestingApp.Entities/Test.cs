@@ -2,9 +2,9 @@
 
 public class Test : EntityBase
 {
-    string Lable { get; set; } = string.Empty;
-    int MaxMark { get; set; }
+    public string Lable { get; set; } = string.Empty;
+    public int MaxMark { get; set; }
 
-    List<User> Users { get; set; } = null!;
-    List<TestTask> Tasks { get; set; } = null!;
+    public List<User> Users { get; set; } = null!;
+    public List<TestTask> Tasks { get; set; } = null!;
 }

@@ -4,11 +4,11 @@ namespace UserTestingApp.Entities;
 
 public class UserAnswer : EntityBase
 {
-    int Mark { get; set; }
+    public int Mark { get; set; }
 
     [ForeignKey(nameof(User))]
-    Guid UserId { get; set; }
+    public Guid UserId { get; set; }
 
-    User User { get; set; } = null!;
-    List<Option> Options { get; set; } = null!;
+    public User User { get; set; } = null!;
+    public List<Option> Options { get; set; } = null!;
 }
