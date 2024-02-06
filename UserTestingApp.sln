@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserTestingApp", "UserTestingApp\UserTestingApp.csproj", "{6403A1BF-2F02-4C69-A076-49F77E62CF30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserTestingApp", "UserTestingApp\UserTestingApp.csproj", "{6403A1BF-2F02-4C69-A076-49F77E62CF30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserTestingApp.DAL", "UserTestingApp.DAL\UserTestingApp.DAL.csproj", "{D7257856-1C0D-4909-8CB4-0A65D35CD4B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserTestingApp.DAL", "UserTestingApp.DAL\UserTestingApp.DAL.csproj", "{D7257856-1C0D-4909-8CB4-0A65D35CD4B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserTestingApp.BLL", "UserTestingApp.BLL\UserTestingApp.BLL.csproj", "{B55D8D8E-5B35-437D-8DF6-D0FD5E2E9FB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserTestingApp.BLL", "UserTestingApp.BLL\UserTestingApp.BLL.csproj", "{B55D8D8E-5B35-437D-8DF6-D0FD5E2E9FB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserTestingApp.Entities", "UserTestingApp.Entities\UserTestingApp.Entities.csproj", "{C2BDB241-EB2F-4B7D-A20D-E44AD932BC12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserTestingApp.Entities", "UserTestingApp.Entities\UserTestingApp.Entities.csproj", "{C2BDB241-EB2F-4B7D-A20D-E44AD932BC12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserTestingApp.Common", "UserTestingApp.Common\UserTestingApp.Common.csproj", "{42D3D519-364D-4DA6-AAFC-C23AB30D3343}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{C2BDB241-EB2F-4B7D-A20D-E44AD932BC12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2BDB241-EB2F-4B7D-A20D-E44AD932BC12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2BDB241-EB2F-4B7D-A20D-E44AD932BC12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42D3D519-364D-4DA6-AAFC-C23AB30D3343}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42D3D519-364D-4DA6-AAFC-C23AB30D3343}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42D3D519-364D-4DA6-AAFC-C23AB30D3343}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42D3D519-364D-4DA6-AAFC-C23AB30D3343}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

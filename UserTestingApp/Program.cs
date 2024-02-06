@@ -1,5 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using UserTestingApp.DAL.EF;
+using UserTestingApp.DAL.Repository.Interface;
+using UserTestingApp.DAL.Repository;
+using UserTestingApp.BLL.Profiles;
+using UserTestingApp.BLL.Services;
+using UserTestingApp.BLL.Services.Interfaces;
+using UserTestingApp.Common.Models;
 
 namespace UserTestingApp
 {
@@ -9,17 +15,32 @@ namespace UserTestingApp
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
+
+            //Mapper
+            builder.Services.AddAutoMapper(typeof(UserProfile));
 
             // DbContext
             builder.Services.AddDbContext<ApplicationDbContext>(opt =>
                 opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+            // Repository
+            builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+            // Service
+            builder.Services.AddScoped<IUserService, UserService>();
+
             builder.Services.AddControllers();
 
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            //CORS
+            builder.Services.AddCors(options => options
+                .AddDefaultPolicy(build => build
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()));
 
             var app = builder.Build();
 
@@ -31,9 +52,9 @@ namespace UserTestingApp
             }
 
             app.UseHttpsRedirection();
+            app.UseCors(opt => opt.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 
