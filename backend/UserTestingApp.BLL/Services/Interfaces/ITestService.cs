@@ -4,7 +4,7 @@ namespace UserTestingApp.BLL.Services.Interfaces;
 
 public interface ITestService
 {
-    Task<ResultDTO> CheckTestAnswerAsync(Guid userId, AnswerDTO dto);
+    Task<TestResultDTO> CheckTestAnswerAsync(Guid userId, AnswerDTO dto);
     Task<List<TestDTO>> GetAllTestsAsync(Guid userId);
-    Task<TestDTO> GetTestAsync(Guid testId);
+    Task<ExtendedTestDTO> GetTestAsync(Guid testId);
 }

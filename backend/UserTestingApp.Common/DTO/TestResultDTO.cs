@@ -1,3 +1,3 @@
 ﻿namespace UserTestingApp.Common.DTO;
 
-public record ResultDTO(int Mark);
+public record TestResultDTO(int Mark);

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UserTestingApp.BLL.Services.Interfaces;
 using UserTestingApp.Common.DTO;
@@ -9,6 +8,7 @@ namespace UserTestingApp.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class TestController : Controller
 {
     private readonly ITestService _testService;
@@ -19,6 +19,7 @@ public class TestController : Controller
     }
 
     [HttpGet]
+    [Authorize]
     public async Task<IActionResult> GetAllTests()
     {
         var userId = HttpContext.GetUserId();
@@ -28,6 +29,7 @@ public class TestController : Controller
     }
 
     [HttpGet("{id}")]
+    [Authorize]
     public async Task<IActionResult> GetTestById(Guid id)
     {
         var result = await _testService.GetTestAsync(id);
@@ -36,6 +38,7 @@ public class TestController : Controller
     }
 
     [HttpPost]
+    [Authorize]
     public async Task<IActionResult> CheckAnswer(AnswerDTO dto)
     {
         var userId = HttpContext.GetUserId();

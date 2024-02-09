@@ -11,6 +11,11 @@ using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using FluentValidation.AspNetCore;
+using FluentValidation;
+using UserTestingApp.Validators.UserValidator;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using UserTestingApp.Middlewares;
 
 namespace UserTestingApp
 {
@@ -24,6 +29,8 @@ namespace UserTestingApp
 
             //Mapper
             builder.Services.AddAutoMapper(typeof(UserProfile));
+
+            builder.Services.AddControllers(cfg => cfg.Filters.Add(typeof(ExceptionFilter)));
 
             // DbContext
             builder.Services.AddDbContext<ApplicationDbContext>(opt =>
@@ -50,20 +57,19 @@ namespace UserTestingApp
                 });
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
-        {
-            {
-                new OpenApiSecurityScheme
-                {
-                    Reference = new OpenApiReference
                     {
-                        Type = ReferenceType.SecurityScheme,
-                        Id = "Bearer"
-                    }
-                },
-                Array.Empty<string>()
-            }
-        }
-                );
+                        {
+                            new OpenApiSecurityScheme
+                                {
+                                    Reference = new OpenApiReference
+                                        {
+                                            Type = ReferenceType.SecurityScheme,
+                                            Id = "Bearer"
+                                        }
+                                },
+                            Array.Empty<string>()
+                        }
+                    });
             });
 
             //Authorization
@@ -84,6 +90,11 @@ namespace UserTestingApp
                         ),
                     };
                 });
+
+            // Validators
+            builder.Services.AddFluentValidationAutoValidation();
+            builder.Services.AddFluentValidationClientsideAdapters();
+            builder.Services.AddValidatorsFromAssemblyContaining<UserValidator>();
 
             //CORS
             builder.Services.AddCors(options => options

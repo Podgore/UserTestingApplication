@@ -30,20 +30,32 @@ public class TestService : ITestService
 
     public async Task<List<TestDTO>> GetAllTestsAsync(Guid userId)
     {
-        var tests = await _testRepository.Include(u => u.TestUsers.Where(tu => tu.UserId == userId)).ToListAsync();
+        var tests = await _testRepository
+            .Include(t => t.TestUsers)
+            .Where(t => t.TestUsers.Any(tu => tu.UserId == userId))
+            .ToListAsync();
 
-        return _mapper.Map<List<TestDTO>>(tests)!;
+        return tests.Select(test =>
+        {
+            var dto = _mapper.Map<TestDTO>(test)!;
+            var testUser = test.TestUsers.FirstOrDefault(tu => tu.UserId == userId);
+
+            dto.Mark = testUser?.Mark ?? 0;
+            dto.isComplited = testUser?.IsComplited ?? false;
+
+            return dto;
+        }).ToList()!;
     }
 
-    public async Task<TestDTO> GetTestAsync(Guid testId)
+    public async Task<ExtendedTestDTO> GetTestAsync(Guid testId)
     {
         var test = await _testRepository.Include(t => t.Tasks).ThenInclude(task => task.Options).FirstOrDefaultAsync(t => t.Id == testId)
             ?? throw new NotFoundException($"Test with this Id is not exist: {testId}");
 
-        return _mapper.Map<TestDTO>(test)!;
+        return _mapper.Map<ExtendedTestDTO>(test)!;
     }
 
-    public async Task<ResultDTO> CheckTestAnswerAsync(Guid userId, AnswerDTO dto)
+    public async Task<TestResultDTO> CheckTestAnswerAsync(Guid userId, AnswerDTO dto)
     {
         var test = await _testRepository
             .Include(t => t.TestUsers)
@@ -57,7 +69,7 @@ public class TestService : ITestService
 
         var mark = dto.TaskAnswers.Count(t => test.Tasks.FirstOrDefault(tt => tt.Id == t.TestTaskId)?.Compare(t) ?? false);
 
-        userTest.Mark = (int)((double)(test.MaxMark / test.Tasks.Count)) * mark;
+        userTest.Mark = (int)Math.Floor(((double)(mark / test.Tasks.Count)) * test.MaxMark);
 
         userTest.IsComplited = true;
 
@@ -72,6 +84,6 @@ public class TestService : ITestService
             await _userAnswerRepository.InsertAsync(result);
         }
 
-        return new ResultDTO(userTest.Mark);
+        return new TestResultDTO(userTest.Mark);
     }
 }
