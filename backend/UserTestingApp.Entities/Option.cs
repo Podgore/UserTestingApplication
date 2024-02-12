@@ -5,7 +5,7 @@ namespace UserTestingApp.Entities;
 public class Option : EntityBase
 {
     public string Label { get; set; } = string.Empty;
-    public bool isCorrect { get; set; }
+    public bool IsComplited { get; set; }
 
     [ForeignKey(nameof(Task))]
     public Guid TaskId { get; set; }

@@ -4,5 +4,5 @@ namespace UserTestingApp.BLL.Services.Interfaces;
 
 public interface IUserService
 {
-    public Task<AuthSuccessDTO> Auhtorization(UserDTO dto);
+    public Task<AuthSuccessDTO> Authorization(UserDTO dto);
 }

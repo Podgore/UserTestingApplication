@@ -11,8 +11,9 @@ public class ExceptionFilter : IExceptionFilter
     {
         context.Result = context.Exception switch
         {
-            NotFoundException => new BadRequestObjectResult(context.Exception.Message),
+            NotFoundException => new NotFoundObjectResult(context.Exception.Message),
             NoRigthAnswerException => new BadRequestObjectResult(context.Exception.Message),
+            InvalidOperationException => new BadRequestObjectResult(context?.Exception.Message),
             _ => new ObjectResult(new { error = $"An unexpected error occurred: {context.Exception.Message}" })
             {
                 StatusCode = (int)HttpStatusCode.InternalServerError

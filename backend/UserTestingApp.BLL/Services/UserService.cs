@@ -26,7 +26,7 @@ public class UserService : IUserService
         _settings = settings.Value;
     }
 
-    public async Task<AuthSuccessDTO> Auhtorization(UserDTO dto)
+    public async Task<AuthSuccessDTO> Authorization(UserDTO dto)
     {
         var user = await _userRepository.FirstOrDefaultAsync(u => u.Email == dto.Email);
 

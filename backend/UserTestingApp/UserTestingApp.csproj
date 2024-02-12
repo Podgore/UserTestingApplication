@@ -28,6 +28,7 @@
   <ItemGroup>
     <ProjectReference Include="..\UserTestingApp.BLL\UserTestingApp.BLL.csproj" />
     <ProjectReference Include="..\UserTestingApp.DAL\UserTestingApp.DAL.csproj" />
+    <ProjectReference Include="..\UserTestingApp.Seeding\UserTestingApp.Seeding.csproj" />
   </ItemGroup>
 
 </Project>

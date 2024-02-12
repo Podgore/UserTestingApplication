@@ -1,3 +1,3 @@
 ﻿namespace UserTestingApp.Common.DTO;
 
-public record AuthSuccessDTO(string Token);
+public record AuthSuccessDTO(string AccessToken);

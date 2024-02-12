@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserTestingApp.BLL", "UserT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserTestingApp.Entities", "UserTestingApp.Entities\UserTestingApp.Entities.csproj", "{C2BDB241-EB2F-4B7D-A20D-E44AD932BC12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserTestingApp.Common", "UserTestingApp.Common\UserTestingApp.Common.csproj", "{42D3D519-364D-4DA6-AAFC-C23AB30D3343}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserTestingApp.Common", "UserTestingApp.Common\UserTestingApp.Common.csproj", "{42D3D519-364D-4DA6-AAFC-C23AB30D3343}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserTestingApp.Seeding", "UserTestingApp.Seeding\UserTestingApp.Seeding.csproj", "{A077158C-44F8-49BB-ADAF-BA9B85E16EAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{42D3D519-364D-4DA6-AAFC-C23AB30D3343}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42D3D519-364D-4DA6-AAFC-C23AB30D3343}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42D3D519-364D-4DA6-AAFC-C23AB30D3343}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A077158C-44F8-49BB-ADAF-BA9B85E16EAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A077158C-44F8-49BB-ADAF-BA9B85E16EAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A077158C-44F8-49BB-ADAF-BA9B85E16EAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A077158C-44F8-49BB-ADAF-BA9B85E16EAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

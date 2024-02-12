@@ -3,7 +3,7 @@ using UserTestingApp.Common.DTO;
 
 namespace UserTestingApp.Validators.AnswerValidator;
 
-public class AnswerValidator : AbstractValidator<AnswerDTO>
+public class AnswerValidator : AbstractValidator<UploadAnswerDTO>
 {
     public AnswerValidator()
     {

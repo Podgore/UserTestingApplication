@@ -7,7 +7,7 @@ using UserTestingApp.Extensions;
 namespace UserTestingApp.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/tests")]
 [Authorize]
 public class TestController : Controller
 {
@@ -37,9 +37,9 @@ public class TestController : Controller
         return Ok(result);
     }
 
-    [HttpPost]
+    [HttpPost("answer")]
     [Authorize]
-    public async Task<IActionResult> CheckAnswer(AnswerDTO dto)
+    public async Task<IActionResult> UploadAnswer(UploadAnswerDTO dto)
     {
         var userId = HttpContext.GetUserId();
 

@@ -55,7 +55,7 @@ public class TestService : ITestService
         return _mapper.Map<ExtendedTestDTO>(test)!;
     }
 
-    public async Task<TestResultDTO> CheckTestAnswerAsync(Guid userId, AnswerDTO dto)
+    public async Task<TestResultDTO> CheckTestAnswerAsync(Guid userId, UploadAnswerDTO dto)
     {
         var test = await _testRepository
             .Include(t => t.TestUsers)
@@ -67,9 +67,12 @@ public class TestService : ITestService
         var userTest = test.TestUsers.FirstOrDefault(tu => tu.UserId == userId)
             ?? throw new NotFoundException($"This test doesn`t assignet to the user with this Id: {userId}");
 
+        if (userTest.IsComplited)
+            throw new InvalidOperationException("Unable to upload answers to already completed test");
+
         var mark = dto.TaskAnswers.Count(t => test.Tasks.FirstOrDefault(tt => tt.Id == t.TestTaskId)?.Compare(t) ?? false);
 
-        userTest.Mark = (int)Math.Floor(((double)(mark / test.Tasks.Count)) * test.MaxMark);
+        userTest.Mark = (int)(mark * 1.0D / test.Tasks.Count * test.MaxMark);
 
         userTest.IsComplited = true;
 
